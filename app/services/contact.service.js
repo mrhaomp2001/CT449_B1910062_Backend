@@ -20,7 +20,10 @@ class ContactService {
 
   async create(payload) {
     const contact = this.extractContactData(payload);
+    
     const note = payload.note || 'none';
+    if (note === '') note = 'none';
+
     const result = await this.Contact.findOneAndUpdate(
       contact,
       {
